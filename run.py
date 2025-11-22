@@ -30,7 +30,7 @@ with open("ghIn", newline="") as fin:
 
 with open("ghOut", "w", newline="", encoding="utf-8") as fout:
     writer = csv.writer(fout)
-    writer.writerow(["T","P","O","T1","T2","C","S","I","bid","ask","averageVolume","averageDailyVolume3Month","averageVolume10days","averageDailyVolume10Day","lastVolume"])
+    writer.writerow(["T","P1","P2","P3","C","V1","V2","S","I","O","T1","T2","B","A"])
     for sym in symbols:
         info = {}
         for attempt in range(4):
@@ -49,20 +49,18 @@ with open("ghOut", "w", newline="", encoding="utf-8") as fout:
                 else:
                     break
                 time.sleep(wait)
-        P = info.get("currentPrice","") or ""
+        P1 = info.get("currentPrice","") or ""
+        P2 = info.get("regularMarketPrice","") or ""
+        P3 = info.get("lastPrice","") or ""
+        C = info.get("marketCap","") or ""
+        V1 = info.get("averageVolume","") or ""
+        V2 = info.get("averageDailyVolume3Month","") or ""
+        S = info.get("sector","") or ""
+        I = info.get("industry","") or ""
         O = info.get("numberOfAnalystOpinions","") or ""
         T1 = info.get("targetMeanPrice","") or ""
         T2 = info.get("targetMedianPrice","") or ""
-        C = info.get("marketCap","") or ""
-        S = info.get("sector","") or ""
-        I = info.get("industry","") or ""
-        bid = info.get("bid","") or ""
-        ask = info.get("ask","") or ""
-        averageVolume = info.get("averageVolume","") or ""
-        averageDailyVolume3Month = info.get("averageDailyVolume3Month","") or ""
-        averageVolume10days = info.get("averageVolume10days","") or ""
-        averageDailyVolume10Day = info.get("averageDailyVolume10Day","") or ""
-        lastVolume = info.get("lastVolume","") or ""
-        writer.writerow([sym, P, O, T1, T2, C, S, I, bid, ask, averageVolume, averageDailyVolume3Month, averageVolume10days, averageDailyVolume10Day, lastVolume])
+        B = info.get("bid","") or ""
+        A = info.get("ask","") or ""
+        writer.writerow([sym, P1, P2, P3, C, V1, V2, S, I, O, T1, T2, B, A])
         time.sleep(random.uniform(1.7,2))
-
