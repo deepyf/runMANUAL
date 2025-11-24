@@ -30,7 +30,7 @@ with open("ghIn", newline="") as fin:
 
 with open("ghOut", "w", newline="", encoding="utf-8") as fout:
     writer = csv.writer(fout)
-    writer.writerow(["T","P1","P2","C","V1","V2","S","I","O","T1","T2","B","A"])
+    writer.writerow(["T","P1","P2","C","V1","V2","V3","V4","V5","V6","V7","V8","V9","S","I","O","T1","T2","B","A"])
     for sym in symbols:
         info = {}
         for attempt in range(4):
@@ -52,8 +52,15 @@ with open("ghOut", "w", newline="", encoding="utf-8") as fout:
         P1 = info.get("regularMarketPrice","") or ""
         P2 = info.get("currentPrice","") or ""
         C = info.get("marketCap","") or ""
-        V1 = info.get("averageVolume","") or ""
-        V2 = info.get("averageDailyVolume3Month","") or ""
+        V1 = info.get("volume","") or ""
+        V2 = info.get("regularMarketVolume","") or ""
+        V3 = info.get("averageVolume","") or ""
+        V4 = info.get("averageVolume10days","") or ""
+        V5 = info.get("averageDailyVolume10Day","") or ""
+        V6 = info.get("averageDailyVolume3Month","") or ""
+        V7 = info.get("lastVolume","") or ""
+        V8 = info.get("tenDayAverageVolume","") or ""
+        V9 = info.get("threeMonthAverageVolume","") or ""
         S = info.get("sector","") or ""
         I = info.get("industry","") or ""
         O = info.get("numberOfAnalystOpinions","") or ""
@@ -61,5 +68,5 @@ with open("ghOut", "w", newline="", encoding="utf-8") as fout:
         T2 = info.get("targetMedianPrice","") or ""
         B = info.get("bid","") or ""
         A = info.get("ask","") or ""
-        writer.writerow([sym, P1, P2, C, V1, V2, S, I, O, T1, T2, B, A])
+        writer.writerow([sym, P1, P2, C, V1, V2, V3, V4, V5, V6, V7, V8, V9, S, I, O, T1, T2, B, A])
         time.sleep(random.uniform(1.7,2))
